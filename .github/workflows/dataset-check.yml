@@ -1,0 +1,27 @@
+name: Dataset Quality Check
+
+on:
+  push:
+    paths:
+      - 'dataset/**'  # 當 dataset 資料夾內的檔案更新時才觸發
+
+jobs:
+  check-dataset:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 載入程式碼
+      uses: actions/checkout@v4
+
+    - name: 設定 Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: 驗證標註檔案
+      run: |
+        python -c "
+        import os
+        print('開始檢查資料集...')
+        # 這裡可以寫簡單的 Python 腳本，確認標註檔與圖片數量是否匹配
+        "
