@@ -1,0 +1,23 @@
+name: GitHub Actions 入門測試
+
+# 1. 觸發條件 (Triggers)：當程式碼被 Push 到 main 分支時執行
+on:
+  push:
+    branches: [ "main" ]
+
+# 2. 工作內容 (Jobs)
+jobs:
+  build-and-test:
+    # 指定執行的作業系統環境 (Runner)
+    runs-on: ubuntu-latest
+
+    steps:
+    # 第一步：把專案程式碼拉取到執行環境中
+    - name: Check out repository code
+      uses: actions/checkout@v4
+
+    # 第二步：執行簡單的 Bash 命令
+    - name: 印出測試訊息
+      run: |
+        echo "Hello, GitHub Actions!"
+        echo "專案程式碼已順利載入！"
