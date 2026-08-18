@@ -1,0 +1,21 @@
+name: Deploy Dashboard to Firebase
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'dashboard/**' # 假設儀表板程式碼放在 dashboard 資料夾
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          channelId: live
+          projectId: your-firebase-project-id
